@@ -1,1 +1,9 @@
-This is my vim configuration
+September 1 2020
+This is my initial vim configuration on X1 laptop
+
+vimrc is my startup file rather than having .vimrc
+in my home directory.
+
+I am configuring this in github.com/ailevin/vimconfig.
+I am not cloning the swap, backup, or undo folders
+The plugins in pack/bundle/start are cloned as submodules
