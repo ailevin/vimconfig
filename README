@@ -1,9 +1,14 @@
 September 1 2020
 This is my initial vim configuration on X1 laptop
-
-vimrc is my startup file rather than having .vimrc
-in my home directory.
-
+My vim startup file is .vim/vmrc, so everything is contained in .vim
+The plugins in .vim/pack/bundle/start are saved as submodules
 I am configuring this in github.com/ailevin/vimconfig.
-I am not cloning the swap, backup, or undo folders
-The plugins in pack/bundle/start are cloned as submodules
+""----------
+"" INSTALLATION
+""----------
+These steps will create a .vim directory and populate it.
+  1.  Make sure git is installed and go to directory where you want .vim
+  2.  $git clone -recurse-submodules https://github.com/ailevin/vimconfig.git .vim
+  3.  $cd .vim
+  4.  $sudo mkdir undo swap backup
+  5.  $sudo chmod 777 undo swap backup
