@@ -1,20 +1,20 @@
-September 1 2020
-This is my initial vim configuration on X1 laptop
-My vim startup file is .vim/vmrc, so everything is contained in .vim
-The plugins in .vim/pack/bundle/start are saved as submodules
-I am configuring this in github.com/ailevin/vimconfig.
+May 16, 2021
+This is a major update to the vim configuration on X1 laptop
+My vim startup file is ~/.vmrc and the rest is in ~.vim
+The plugins are loaded by plug.vim and plug.vim is installed
+automatically by .vimrc.  In fact, .vimrc will create ~/.vim
+if necessary as well as minimum necessary subdirectories.
+This is much simpler then my old installation
 ""----------
 "" INSTALLATION
 ""----------
 These steps will create a .vim directory and populate it.
-  1.  Make sure git is installed and go to directory where you want .vim
-  2.  $git clone -recurse-submodules https://github.com/ailevin/vimconfig.git .vim
-  3.  $cd .vim
-  4.  $sudo mkdir undo swap backup
-  5.  $sudo chmod 777 undo swap backup
+  1.  Make sure git and vim are installed and go to home directory
+  2.  $git clone TBD to clone .vimrc file into home directory
+  3.  $vim
+  4.  You may get error message due to colorscheme missing
+  5.  within vim :PlugInstall
 ""------------
 "" UPDATE
 ""------------
-To update a plugin foo:
-    cd ~/.vim/pack/plugins/start/foo/
-    git pull origin master
+plug.vim will manage plugin updates
