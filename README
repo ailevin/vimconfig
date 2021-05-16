@@ -12,3 +12,9 @@ These steps will create a .vim directory and populate it.
   3.  $cd .vim
   4.  $sudo mkdir undo swap backup
   5.  $sudo chmod 777 undo swap backup
+""------------
+"" UPDATE
+""------------
+To update a plugin foo:
+    cd ~/.vim/pack/plugins/start/foo/
+    git pull origin master

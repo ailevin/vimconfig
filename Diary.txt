@@ -1,0 +1,43 @@
+                        Vim Diary 2021
+May 15, 2021
+
+Over the past two months I have been experimenting and fundamentally changing my vim files and dotfile structure in Ubuntu on Windows using my X1 Carbon laptop.  I started by scrapping my plugin manager and switching to vim-plugged.
+
+Shortly after that I compiled my own version of vim trying to get system clipboard to work.  This led to a big vim/ library of source, make, and perhaps log files, which I moved to ~/.local/share/vim. Not sure why I put it there, or exactly how I got the .local directory, but it looks like whatever I did to install Jupyter and SQL created that structure.  The actual binary (vim 8.2) with all the bells and whistles I could managed was installed in /usr/local/bin/vim. It looks like install was April 15.
+
+I also added a complete vim python ide from https://vim.fisadev.com/ on May 8.  This basically replaced my old .vim directory and installed a new .vimrc plus a bunch of tools.  I also installed some necessary bits and pieces using apt-get and pip3.  I spent a while editing the supplied .vimrc file to match my preferences so I coul at least navigate.  That is the difference between the .vimrc.ide.mine and .virrc.ide.original.  While I learned some new tricks and liked some aspects, it was mostly overwhelming.  There were too many plugins that I didn't understand, and it was kind of slow.  I wanted to go for something more minimal.  So I switched back to my original .vimrc, but added in some new things.  However, in the process, I became confused about which directories went with which versions of my .vimrc and affiliated plugin managers, plugins, colorschemes, and so forth.
+
+I have also added fzf, rg (ripgrep grep replacement) fd (find replacement) ack (hmm, what was that again).  It looks like ack is another grep replacement.  There seems to be a whole fuzzy finder culture, which I am still working to understand, but it has become very useful in vim and will become even better if I get all my help-tags right.
+
+Meanwhile, back to vim and in particular .vimrc.  I copied the organizational style of Ben Kadel.  He put a big block of generic documentation and notes up front, but he uses marked folds with triple curly brakets  to fold it down.  In fact, all the major sections are folded, which helps to cut the problem of scanning it down to size.  The sections are Help and Notes, Sets, Plugins, Maps and Commands, Plugin Setup, Autocmds, and Highlights.  I have all of his highlights commented out, but I kept the section because I will want to do some color adjustment. Going section by section:
+
+Sets has backup, swap, undo, history as before in directories in .vim. Not sure how commited I am to all of that as I have never used it, but not now. Other settings are displays which are pretty much as before, but I added splitbelow and splitright, and foldmethod=marker.  I adjusted timeoutlen to be 1.5 sec vs 1 and ttineoutlen=10 (I only vaguely understand this except I do not want it zero.
+
+Plugins:  I thought I was going minimalist, for sntance, not need for nerdtree between Explore and FZF related commands, but the list has grown, and I may be trimming again.
+-->vim-minimap is a little window that shows you where you are in a big file.  I have yet to find it useful, so it may go.
+-->Goyou.vim and limelight.vim are two plugins that work together to created a better text editing environment without going overboard on features.  I have grown to like it so it will stay.
+-->ack.vim, I just don't know why. And I will probably lose it.
+-->tcomment is a usefull fairly simple commenting tool.  It spawns a bunch of key maps I haven't rally figure out yet.  many of them start with <Ctrl_>.
+-->vim-easy-align I don't know why.
+-->fzf.vim I am still learning, but I am convinced so this one stays. vim-peekabo shows you what is in the registers when you type ".  I like it.
+-->vim-unimpaired is great and I am used ot it.
+-->vim-repeat powers up the .
+-->so that it repeats plugin stuff and maybe commands, but there is always &.
+-->vim-surround is another nicely done tpope plugin that will stay.
+-->vim-airline is a color status line I have been using for quite a while and I like it though there are numerous supposedly lighter weight solutions that I may check out, but there is no rush and I am happy with how it is working.
+-->vim-cheat40 is a cool app that simply brings up a cheat sheet that you can program to your taste.  It works with folds much like the Ben Kaidel approach for .vimrc, so it looks promising.
+-->vim-grepper I have no idea but I think it is rg or ack related, and again if I don't figure out why, it will go.
+-->I have two color theme plugins: seolu256.vim and papercolor-theme.
+-->target.vim extends vims text objects to work with a wide range of delimiters.  I haven't figured out exactly how it works or why I need it, but perhaps it will become clear.  If not, it will go.
+-->The last two plugins are vim-flake8 and vim-python-pep8-indent. flake8 is triggered by <F7> is a python file is loaded.  No idea where/how that is set.  There is no flake8 help.  hmmm.  And I have no idea what the indent program is doing or how it works.  I need to figure that our or drop it.  Maybe it is just changing settings, but if I so i want to understand.
+
+Maps and Commands has all my old custom key stuff and leader commands. The additions are <leader>g for Goyo, <leader>pp for paste toggle, <F5> for :setlocal spell!, and that's about it, except that there are a bunch of mappings set my plugins, more on that later.  Something I have seen that is interesting is a setup where a bunch of two character maps are done starting with ', almost making ' like another leader.  In fact, the different leaders can be themed, like maybe ' are jumps.
+
+Plugin Setup.  Some things have to be setup after the plugins are declared (installed?) and they are here.  fzf colors are set, default colorscheme PaperColor is set as are bg=dark and limelight default 0.7
+
+Next is Autocmds for Goyo turning on Limelight when it enters and turning it off when it leaves. I also have one that turns off auto comment on new line, and one that clips excess spaces from ends of lines and excess new lines from bottom of file on file save.  I have an autocmd that recognizes my keyword and other _map.txt files as fson. Finally there is the definition I have had for a while for DiffOrig to compare currently edited file with original.  But it is only recently that I have come to understand how diff or the quicklist works, but now it is useful.  The crucial pieces I was missing before were the ]q [q from unimpaired that cycles through the quicklist for both the pythod linter and diff, and anything else that uses a quicklist.  And especially :diffoff to stop the comparison as well as :cclose to close the quicklist.
+
+I have figured out that flake8 only appears when you load a python file, and perhaps something similar is going on for the indent.  Both seem to work well. Flake8 is tied to <F7> and the indent tool is tied to the usual = indent tool both in normal and visual mode.  It seems to work quite well.  I have not figured out variable settings for multiline indents and how it treats multiline brakets or parens, but I don't think I care right now. So today's grand summary on plugins:
+ - vim-easy-align, ack, vim-grepper, vim-minimap are on the chopping block.
+ - The colors, fzf, the two python apps, peekaboo, goyou and limelight, vim-suround, vim-unimpaired, tcomment are solid.
+ - targets.vim, vim-repeat, vim-airline, vim-cheat40, seems fine, but it will be use it or lose it.
